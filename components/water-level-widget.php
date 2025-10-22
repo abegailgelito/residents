@@ -182,7 +182,7 @@ function getStatustexts($waterLevelMeters) {
     if ($waterLevelFeet < 1) {
         return '#155724';      // Normal - Green
     } elseif ($waterLevelFeet >= 1 && $waterLevelFeet <= 2) {
-        return '#FFFF00';      // Low - Yellow
+        return '#999927ff';      // Low - Yellow
     } elseif ($waterLevelFeet >= 2 && $waterLevelFeet <= 3) {
         return '#856404';      // Moderate - Orange
     } elseif ($waterLevelFeet >= 3 && $waterLevelFeet < 5) {

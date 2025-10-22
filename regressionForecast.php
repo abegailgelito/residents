@@ -2,7 +2,7 @@
 include('<db.php');
 // session_start();
 //Select statement
-$sql = "SELECT water_level, reading_time, reading_date FROM (SELECT water_level, reading_time, reading_date FROM sensor_readings3 ORDER BY reading_time DESC limit 6) as water_level ORDER BY reading_time ASC ";
+$sql = "SELECT water_level, reading_time, reading_date FROM (SELECT water_level, reading_time, reading_date FROM tbl_sensor_readings ORDER BY reading_time DESC limit 6) as water_level ORDER BY reading_time ASC ";
 $result = $conn->query($sql);
 $waterlevelarray = [];
 if ($result->num_rows > 0) {
@@ -91,7 +91,7 @@ function getForecastStatus($forecastMeters) {
             'color' => '#fff3cd',
             'text_color' => '#856404',
             'icon' => 'fa-exclamation-triangle',
-            'class' => 'status-warning'
+            'class' => 'status-low'
         ];
     }
     // Moderate Risk: 2-3 ft

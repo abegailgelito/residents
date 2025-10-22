@@ -216,7 +216,7 @@
         
         /* Map Widget */
         .map-container {
-            height: 700px;
+            height: 722px;
             border-radius: 8px;
             overflow: hidden;
         }
@@ -384,7 +384,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             padding: 20px;
             margin-bottom: 20px;
-            height: 245px;
+            height: 250px;
         }
         
         /* Responsive Media Queries */

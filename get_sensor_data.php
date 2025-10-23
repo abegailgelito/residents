@@ -58,15 +58,32 @@ function getNotifications() {
     global $pdo;
     
     try {
+        // Test if table exists
+        $testStmt = $pdo->prepare("SHOW TABLES LIKE 'notifications'");
+        $testStmt->execute();
+        $tableExists = $testStmt->fetch();
+        
+        if (!$tableExists) {
+            error_log("Notifications table does not exist");
+            echo json_encode([
+                'success' => false,
+                'message' => 'Notifications table does not exist'
+            ]);
+            return;
+        }
+        
         $stmt = $pdo->prepare("SELECT title, message, type, created_at FROM notifications ORDER BY created_at DESC LIMIT 50");
         $stmt->execute();
         $notifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        error_log("Found " . count($notifications) . " notifications");
         
         echo json_encode([
             'success' => true,
             'notifications' => $notifications
         ]);
     } catch (PDOException $e) {
+        error_log("Error in getNotifications: " . $e->getMessage());
         echo json_encode([
             'success' => false,
             'message' => 'Error fetching notifications: ' . $e->getMessage()
